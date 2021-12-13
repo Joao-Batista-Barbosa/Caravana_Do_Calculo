@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <meta charset="utf-8">
+        <title>Fase 2 </title>
+    </head>
+
+<body onkeydown="OnKeyDown(event)" onkeyup="OnKeyUp(event)">
+    <a href='index.html' class="myButton"style="font-size: 20px ;"> VOLTAR AO INDEX </a>
+    <img id="canhao" width="0" height="0" src="fundos/canhao.png">
+    <img id="barril14" width="0" height="0" src="barris/barril14.png">
+    <img id="barril7" width="0" height="0" src="barris/barril7.png">
+    <img id="barril10" width="0" height="0" src="barris/barril10.png">
+    <img id="barril6" width="0" height="0" src="barris/barril6.png">
+    <img id="fundo" width="0" height="0" src="fundos/fundo2.png">
+    <img id="tiros" width="0" height="0" src="fundos/tiros.png">
+
+    <canvas id="myCanvas" width="400" height="450"></canvas>
+
+    <script>
+        var vida = 3;
+        var tempo = 0;
+        var x1 = 170;
+        var xc = 10;
+        var y = 0;
+        var teclar = "";
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+        var img = document.getElementById("canhao"); 
+        var img2 = document.getElementById("fundo");
+        var img3 = document.getElementById("barril14");
+        var img4 = document.getElementById("barril10");
+        var img5 = document.getElementById("barril6");
+        var img6 = document.getElementById("barril7");
+        var img7 = document.getElementById("tiros");
+        function OnKeyDown(event) {
+            teclar = event.key;
+        }
+
+        function OnKeyUp(event) {
+            teclar = "";
+        }
+
+        function Update() {
+            ctx.clearRect(0, 0, 400, 450);
+            ctx.drawImage(img2, 0, 0, 400, 450);
+            ctx.drawImage(img, x1, 310, 50, 50);
+            ctx.drawImage(img3, xc, 80, 50, 70);
+            ctx.drawImage(img4, 110, 80, 50, 70);
+            ctx.drawImage(img5, 230, 80, 50,70);
+            ctx.drawImage(img6, 320, 80, 50, 70);
+            ctx.drawImage(img7, 350, 390, 50, 70);
+            if(x1>=400 || x1<=-50){
+                x1=170;
+            }
+            if (teclar == "d") {
+                x1 += 3;
+            } else if (teclar == "a") {
+                x1 -= 3;
+            }
+            if (teclar == "e") {
+                if (x1 >= xc - 15 && x1 <= xc + 15) {
+                    alert("Parabens!!!\nClique no Ok para passar de fase");
+                    window.location.href = "fase3.html";
+                    tempo = 0;
+                    vida=3;
+                } else
+                    alert("Errou\nMenos uma vida");
+                tempo = 0;
+                vida = vida - 1;
+            }
+            teclar = "";
+            tempo++;
+            if (tempo == 2000) {
+                alert("ACABOU O TEMPO :(\nClique ok para voltar para o lobby");
+                window.location.href = "index.html";
+                tempo = 0;
+            }
+            if (vida == 0) {
+                alert("Acabaram suas vidas\nClique ok para voltar para o lobby");
+                window.location.href = "index.html";
+                vida = -1;
+            }
+            console.log(vida);
+            ctx.fillText(tempo/100,10,20)
+        }
+        setInterval(Update, 10);
+    </script>
+
+</body>
+
+</html>

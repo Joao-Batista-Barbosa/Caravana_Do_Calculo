@@ -1,0 +1,21 @@
+*{
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    background-image: url(../fundos/vitoriafacil.png);
+}
+
+.botao{
+    font-size: 20px ; 
+    text-decoration: none;
+    color: black;
+    position: absolute;
+	margin-right: 2%;
+    padding: 23.2px 10px;
+    top:60%;
+    left: 47%;
+}
